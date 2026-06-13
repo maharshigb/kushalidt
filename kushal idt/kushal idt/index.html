@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHole AI – Intelligent Manhole Monitoring System</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2E7D32",
+                        secondary: "#4CAF50",
+                        accent: "#A5D6A7",
+                        danger: "#E53935",
+                        warning: "#FFB300"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet.js for Interactive Geospatial Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#ECEFF1] dark:bg-[#0A0F0D] text-[#263238] dark:text-neutral-100 transition-colors duration-300">
+    
+    <!-- Root App Layout -->
+    <div id="app-container">
+        
+        <!-- App card shell -->
+        <main class="phone-mockup">
+            
+            <!-- Screen Viewport Container -->
+            <div class="phone-screen no-nav">
+                
+                <!-- Push Notification Banner Overlay -->
+                <div class="push-notification" id="phone-push-banner">
+                    <span class="material-symbols-outlined text-red-500 text-[20px] mt-0.5 shrink-0 animate-bounce" style="font-variation-settings: 'FILL' 1;">warning</span>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs font-extrabold text-neutral-800 dark:text-neutral-100 push-title">Push Alert</h4>
+                        <p class="text-[10px] text-neutral-500 dark:text-neutral-400 mt-0.5 push-message">Sensor spike reported</p>
+                    </div>
+                    <span class="material-symbols-outlined text-[14px] text-neutral-400 cursor-pointer" onclick="document.getElementById('phone-push-banner').classList.remove('show')">close</span>
+                </div>
+
+                <!-- Active Page Template Renders Here -->
+                <div class="screen-viewport" id="phone-viewport">
+                    <!-- Screens render dynamic templates from screens.js -->
+                </div>
+
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- Import logic Scripts -->
+    <script src="screens.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

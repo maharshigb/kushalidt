@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-tertiary-container": "#c8ffbf",
+                  "surface-container-lowest": "#ffffff",
+                  "inverse-primary": "#88d982",
+                  "inverse-on-surface": "#edf2ea",
+                  "on-tertiary-fixed": "#002203",
+                  "surface-dim": "#d6dcd3",
+                  "on-tertiary-fixed-variant": "#0c5216",
+                  "surface": "#f5fbf2",
+                  "error-container": "#ffdad6",
+                  "on-surface": "#171d18",
+                  "surface-bright": "#f5fbf2",
+                  "on-secondary-fixed": "#002204",
+                  "on-secondary": "#ffffff",
+                  "on-background": "#171d18",
+                  "tertiary-fixed-dim": "#91d78a",
+                  "primary-fixed": "#a3f69c",
+                  "primary-container": "#2e7d32",
+                  "secondary-container": "#91f78e",
+                  "on-error": "#ffffff",
+                  "surface-container-low": "#f0f5ed",
+                  "on-secondary-container": "#00731e",
+                  "tertiary-fixed": "#acf4a4",
+                  "surface-container-highest": "#dee4dc",
+                  "inverse-surface": "#2c322c",
+                  "tertiary": "#1f6223",
+                  "secondary": "#006e1c",
+                  "on-error-container": "#93000a",
+                  "surface-variant": "#dee4dc",
+                  "outline-variant": "#bfcaba",
+                  "on-primary-container": "#cbffc2",
+                  "on-secondary-fixed-variant": "#005313",
+                  "on-tertiary": "#ffffff",
+                  "surface-tint": "#1b6d24",
+                  "surface-container-high": "#e4eae1",
+                  "primary-fixed-dim": "#88d982",
+                  "tertiary-container": "#3a7b39",
+                  "on-surface-variant": "#40493d",
+                  "background": "#f5fbf2",
+                  "on-primary-fixed": "#002204",
+                  "on-primary-fixed-variant": "#005312",
+                  "secondary-fixed-dim": "#78dc77",
+                  "primary": "#0d631b",
+                  "error": "#ba1a1a",
+                  "secondary-fixed": "#94f990",
+                  "outline": "#707a6c",
+                  "surface-container": "#eaf0e7",
+                  "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "gutter": "16px",
+                  "stack-lg": "24px",
+                  "base": "8px",
+                  "container-padding-mobile": "16px",
+                  "stack-md": "12px",
+                  "container-padding-desktop": "24px",
+                  "stack-sm": "4px"
+          },
+          "fontFamily": {
+                  "headline-lg": ["Manrope"],
+                  "label-md": ["Manrope"],
+                  "headline-lg-mobile": ["Manrope"],
+                  "body-lg": ["Manrope"],
+                  "title-lg": ["Manrope"],
+                  "display-lg": ["Manrope"],
+                  "body-md": ["Manrope"]
+          },
+          "fontSize": {
+                  "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                  "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                  "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .active-scale:active { transform: scale(0.95); transition: transform 150ms; }
+    .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-50 flex justify-between items-center w-full px-container-padding-mobile h-16 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="security">security</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">SafeHole AI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-container-padding-mobile max-w-2xl mx-auto space-y-stack-lg">
+<!-- User Profile Header Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/30 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<img alt="User Profile" class="w-24 h-24 rounded-full object-cover border-4 border-secondary-container" data-alt="A professional headshot of a middle-aged male infrastructure engineer in a high-tech environment. He is wearing a clean charcoal polo shirt, standing against a backdrop of blurred digital monitoring screens with green safety data visualizations. The lighting is bright and professional, emphasizing a modern corporate safety aesthetic with high-key lighting and clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8pkh3PBMA0BRtw5UnkuAy41dJ7DJ8ZYme-oz6ljs8x-zhS9KbfVopgNnjxOqb9CiPiF55IIRkqbT_slBIGheHQtMF7AkmvpqFSUfrnWlEpODEWr7SyungymjbHfA9HEHjsnqoqXau1lKFmxvEDQvQU9N2jSn82bdxBcQH2YcNFAKB2Shv-7AWW_EJBGyv6qjH1lbLTO7JpcTToyrOwLsO3KSq0eglT8yI8--Xpmx9K1SUs0ICgDnkiYaaDPC1hdBN5zHiAbcTP3c"/>
+<div class="absolute bottom-0 right-0 bg-primary p-1.5 rounded-full border-2 border-white">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Marcus Thorne</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-3 py-0.5 bg-secondary-container text-on-secondary-container text-label-md font-label-md rounded-full">Supervisor</span>
+<span class="text-outline text-label-md">•</span>
+<span class="text-on-surface-variant text-label-md font-label-md">ID: SH-8829</span>
+</div>
+</section>
+<!-- Account Settings List -->
+<section class="space-y-base">
+<h3 class="px-2 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Account Settings</h3>
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
+<!-- Edit Profile -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group active-scale">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="text-left">
+<p class="text-body-lg font-semibold text-on-surface">Edit Profile</p>
+<p class="text-label-md text-on-surface-variant">Personal details and preferences</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<hr class="mx-4 border-outline-variant/10"/>
+<!-- Notification Settings -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group active-scale">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="text-left">
+<p class="text-body-lg font-semibold text-on-surface">Notification Settings</p>
+<p class="text-label-md text-on-surface-variant">Configure alerts and app signals</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<hr class="mx-4 border-outline-variant/10"/>
+<!-- Security Settings -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group active-scale">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div class="text-left">
+<p class="text-body-lg font-semibold text-on-surface">Security Settings</p>
+<p class="text-label-md text-on-surface-variant">Password, 2FA and sessions</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Support Section -->
+<section class="space-y-base">
+<h3 class="px-2 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Support</h3>
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
+<!-- Help & Support -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group active-scale">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</div>
+<div class="text-left">
+<p class="text-body-lg font-semibold text-on-surface">Help &amp; Support</p>
+<p class="text-label-md text-on-surface-variant">FAQs and technical assistance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Logout Action -->
+<section class="pt-4">
+<button class="w-full py-4 flex items-center justify-center gap-2 rounded-xl bg-error-container text-on-error-container font-semibold transition-all active:scale-[0.98] border border-error/10">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+        Logout
+      </button>
+<p class="text-center text-label-md text-outline mt-6">Version 2.4.1 (SafeHole AI Stable Build)</p>
+</section>
+</main>
+<!-- Predicted Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<!-- Monitoring -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-label-md font-label-md">Monitoring</span>
+</a>
+<!-- Alerts -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-label-md font-label-md">Alerts</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+<!-- Profile (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform active:scale-95 duration-150 font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</nav>
+<script>
+    // Subtle interactivity for list items
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('touchstart', () => {
+        btn.classList.add('bg-surface-container-high');
+      });
+      btn.addEventListener('touchend', () => {
+        setTimeout(() => {
+          btn.classList.remove('bg-surface-container-high');
+        }, 100);
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeHole AI - Analytics &amp; Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#c8ffbf",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#88d982",
+                    "inverse-on-surface": "#edf2ea",
+                    "on-tertiary-fixed": "#002203",
+                    "surface-dim": "#d6dcd3",
+                    "on-tertiary-fixed-variant": "#0c5216",
+                    "surface": "#f5fbf2",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#171d18",
+                    "surface-bright": "#f5fbf2",
+                    "on-secondary-fixed": "#002204",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#171d18",
+                    "tertiary-fixed-dim": "#91d78a",
+                    "primary-fixed": "#a3f69c",
+                    "primary-container": "#2e7d32",
+                    "secondary-container": "#91f78e",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f0f5ed",
+                    "on-secondary-container": "#00731e",
+                    "tertiary-fixed": "#acf4a4",
+                    "surface-container-highest": "#dee4dc",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#1f6223",
+                    "secondary": "#006e1c",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#dee4dc",
+                    "outline-variant": "#bfcaba",
+                    "on-primary-container": "#cbffc2",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#1b6d24",
+                    "surface-container-high": "#e4eae1",
+                    "primary-fixed-dim": "#88d982",
+                    "tertiary-container": "#3a7b39",
+                    "on-surface-variant": "#40493d",
+                    "background": "#f5fbf2",
+                    "on-primary-fixed": "#002204",
+                    "on-primary-fixed-variant": "#005312",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary": "#0d631b",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#94f990",
+                    "outline": "#707a6c",
+                    "surface-container": "#eaf0e7",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "container-padding-mobile": "16px",
+                    "stack-md": "12px",
+                    "container-padding-desktop": "24px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "title-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f5fbf2; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-container { min-height: 200px; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .status-pulse { animation: pulse-red 2s infinite; }
+        @keyframes pulse-red { 0% { transform: scale(0.95); opacity: 1; } 70% { transform: scale(1.05); opacity: 0.7; } 100% { transform: scale(0.95); opacity: 1; } }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface mb-24">
+<!-- Top AppBar -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm docked full-width top-0 flex justify-between items-center w-full px-container-padding-mobile h-16 z-50 transition-all duration-200 fixed">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="security">security</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-inverse-primary">SafeHole AI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-surface-variant" data-icon="search">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-surface-variant" data-icon="calendar_today">calendar_today</span>
+</button>
+</div>
+</header>
+<div class="fixed inset-0 pt-16 pb-24 overflow-y-auto bg-background"><main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop mt-stack-lg"><!-- Page Title -->
+<div class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface">Analytics &amp; Reports</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Deep dive into sensor performance and safety compliance metrics.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                    Export PDF/Excel
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Safety Compliance Score (Gauge) -->
+<div class="md:col-span-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col items-center justify-center text-center">
+<div class="relative w-48 h-48 mb-4">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502.4" stroke-dashoffset="45" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-display-lg font-display-lg text-primary">91%</span>
+<span class="text-label-md font-label-md text-on-surface-variant">OPTIMAL</span>
+</div>
+</div>
+<h3 class="text-title-lg font-title-lg text-on-surface">Safety Compliance</h3>
+<p class="text-body-md text-on-surface-variant mt-2">Overall safety score based on 2,400 active sensors across the district.</p>
+</div>
+<!-- Alert Trends Graph (Area Chart) -->
+<div class="md:col-span-8 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-title-lg font-title-lg text-on-surface">Alert Trends</h3>
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2 py-1 bg-primary-container/10 text-primary rounded-lg text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-primary mr-2"></span> Active
+                        </span>
+<span class="inline-flex items-center px-2 py-1 bg-error-container/10 text-error rounded-lg text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-error mr-2"></span> Critical
+                        </span>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<!-- Area Chart Visual Mock -->
+<svg class="w-full h-full preserve-3d" viewBox="0 0 800 200">
+<defs>
+<linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#1b6d24" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#1b6d24" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0,180 Q100,120 200,150 T400,80 T600,110 T800,40 L800,200 L0,200 Z" fill="url(#areaGradient)"></path>
+<path d="M0,180 Q100,120 200,150 T400,80 T600,110 T800,40" fill="transparent" stroke="#1b6d24" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="400" cy="80" fill="#ffffff" r="4" stroke="#1b6d24" stroke-width="2"></circle>
+<path d="M0,195 Q100,185 200,190 T400,170 T600,175 T800,160" fill="transparent" stroke="#ba1a1a" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+<div class="flex justify-between mt-4 text-label-md font-label-md text-on-surface-variant">
+<span class="">Mon</span><span class="">Tue</span><span class="">Wed</span><span class="">Thu</span><span class="">Fri</span><span class="">Sat</span><span class="">Sun</span>
+</div>
+</div>
+</div>
+<!-- Monthly Incident Chart (Bar chart) -->
+<div class="md:col-span-7 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-title-lg font-title-lg text-on-surface">Monthly Incidents</h3>
+<select class="bg-surface-container-low border-none rounded-lg text-label-md font-label-md focus:ring-primary">
+<option>Year 2024</option>
+<option>Year 2023</option>
+</select>
+</div>
+<div class="flex items-end justify-between h-48 gap-2">
+<!-- Bar Chart Visual Mock -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary/50" style="height: 40%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">Jan</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary/50" style="height: 60%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">Feb</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary rounded-t-lg transition-all hover:opacity-80" style="height: 85%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">Mar</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary/50" style="height: 30%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">Apr</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary/50" style="height: 55%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">May</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary/50" style="height: 45%"></div>
+<span class="text-label-md mt-2 text-on-surface-variant">Jun</span>
+</div>
+</div>
+</div>
+<!-- Sensor Performance Card -->
+<div class="md:col-span-5 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm overflow-hidden relative">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-title-lg font-title-lg text-on-surface">Sensor Health</h3>
+<span class="material-symbols-outlined text-primary" data-icon="sensors">sensors</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-body-md font-bold text-on-surface">O2 Sensors</span>
+<span class="text-label-md text-on-surface-variant">982 active units</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-primary">99.2%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99.2%]"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-body-md font-bold text-on-surface">CO2 Sensors</span>
+<span class="text-label-md text-on-surface-variant">741 active units</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-secondary">94.5%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[94.5%]"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-body-md font-bold text-on-surface">Methane Probes</span>
+<span class="text-label-md text-on-surface-variant">677 active units</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-error">88.1%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[88.1%]"></div>
+</div>
+</div>
+</div>
+<!-- Recent Reports List (High Density) -->
+<div class="md:col-span-12 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm mb-gutter">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-title-lg font-title-lg text-on-surface">Generated Reports</h3>
+<button class="text-label-md font-label-md text-primary hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-label-md font-label-md text-on-surface-variant border-b border-outline-variant">
+<th class="pb-3">REPORT NAME</th>
+<th class="pb-3">DATE</th>
+<th class="pb-3">STATUS</th>
+<th class="pb-3">DOWNLOAD</th>
+</tr>
+</thead>
+<tbody class="text-body-md divide-y divide-outline-variant/30">
+<tr>
+<td class="py-4 font-bold text-on-surface">Q1 Safety Audit - Central District</td>
+<td class="py-4 text-on-surface-variant">March 28, 2024</td>
+<td class="py-4"><span class="px-2 py-1 bg-primary-container/10 text-primary rounded-full text-[10px] font-bold">READY</span></td>
+<td class="py-4"><button class="material-symbols-outlined text-primary-container hover:scale-110 transition-transform" data-icon="picture_as_pdf">picture_as_pdf</button></td>
+</tr>
+<tr>
+<td class="py-4 font-bold text-on-surface">Sensor Maintenance Log - West Sector</td>
+<td class="py-4 text-on-surface-variant">March 25, 2024</td>
+<td class="py-4"><span class="px-2 py-1 bg-primary-container/10 text-primary rounded-full text-[10px] font-bold">READY</span></td>
+<td class="py-4"><button class="material-symbols-outlined text-primary-container hover:scale-110 transition-transform" data-icon="table_chart">table_chart</button></td>
+</tr>
+<tr>
+<td class="py-4 font-bold text-on-surface">Gas Leak Incident Analysis - #MH-2041</td>
+<td class="py-4 text-on-surface-variant">March 22, 2024</td>
+<td class="py-4"><span class="px-2 py-1 bg-error-container/10 text-error rounded-full text-[10px] font-bold">CRITICAL</span></td>
+<td class="py-4"><button class="material-symbols-outlined text-error hover:scale-110 transition-transform" data-icon="picture_as_pdf">picture_as_pdf</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></main><button class="fixed right-6 bottom-24 bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-40 group">
+<span class="material-symbols-outlined text-2xl" data-icon="ios_share">ios_share</span>
+<span class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-3 py-1 rounded-lg text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Quick Export</span>
+</button></div>
+<!-- Floating Action Button for Export -->
+
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface dark:bg-inverse-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-label-md font-label-md mt-1">Monitoring</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-label-md font-label-md mt-1">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-label-md font-label-md mt-1">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-md font-label-md mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and atmospheric logic
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.96)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Simulating data updates for sensor bars
+        const animateBars = () => {
+            const bars = document.querySelectorAll('.bg-primary, .bg-secondary, .bg-error');
+            bars.forEach(bar => {
+                const currentWidth = bar.style.width;
+                const randomShift = (Math.random() - 0.5) * 2;
+                const baseWidth = parseFloat(currentWidth);
+                if (baseWidth > 0) {
+                    // bar.style.width = `${Math.min(100, Math.max(0, baseWidth + randomShift))}%`;
+                }
+            });
+        };
+        setInterval(animateBars, 3000);
+    </script>
+
+
+</body></html>
