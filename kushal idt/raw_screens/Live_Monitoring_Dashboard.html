@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeHole AI - Live Monitoring</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f5fbf2",
+                    "primary-fixed": "#a3f69c",
+                    "secondary": "#006e1c",
+                    "on-tertiary-fixed-variant": "#0c5216",
+                    "on-secondary-container": "#00731e",
+                    "on-secondary-fixed": "#002204",
+                    "background": "#f5fbf2",
+                    "tertiary-container": "#3a7b39",
+                    "outline-variant": "#bfcaba",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eaf0e7",
+                    "error-container": "#ffdad6",
+                    "on-background": "#171d18",
+                    "surface": "#f5fbf2",
+                    "primary-fixed-dim": "#88d982",
+                    "error": "#ba1a1a",
+                    "tertiary": "#1f6223",
+                    "surface-container-high": "#e4eae1",
+                    "secondary-fixed-dim": "#78dc77",
+                    "on-primary-container": "#cbffc2",
+                    "on-tertiary-fixed": "#002203",
+                    "on-surface-variant": "#40493d",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f0f5ed",
+                    "outline": "#707a6c",
+                    "secondary-fixed": "#94f990",
+                    "on-surface": "#171d18",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#dee4dc",
+                    "tertiary-fixed": "#acf4a4",
+                    "on-primary-fixed-variant": "#005312",
+                    "primary-container": "#2e7d32",
+                    "primary": "#0d631b",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2c322c",
+                    "on-tertiary-container": "#c8ffbf",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#dee4dc",
+                    "secondary-container": "#91f78e",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-dim": "#d6dcd3",
+                    "tertiary-fixed-dim": "#91d78a",
+                    "inverse-on-surface": "#edf2ea",
+                    "on-primary-fixed": "#002204",
+                    "surface-tint": "#1b6d24",
+                    "inverse-primary": "#88d982"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "16px",
+                    "container-padding-mobile": "16px",
+                    "base": "8px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "title-lg": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pulse {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #bfcaba; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background min-h-screen overflow-hidden flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50 h-16 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary text-[32px]">security</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Live Monitoring</h1>
+</div>
+<div class="flex-1 max-w-md mx-gutter hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary text-body-md transition-all" placeholder="Search manholes, zones..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop mt-stack-lg space-y-stack-lg overflow-y-auto flex-1">
+<!-- Summary Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Safe Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border-l-4 border-primary shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Safe Manholes</p>
+<h2 class="text-display-lg font-display-lg text-primary mt-base">245</h2>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="mt-stack-md flex items-center text-label-md text-primary font-bold">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                    98% Optimal
+                </div>
+</div>
+<!-- Warning Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border-l-4 border-[#FFB300] shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Warning Status</p>
+<h2 class="text-display-lg font-display-lg text-[#FFB300] mt-base">12</h2>
+</div>
+<div class="w-12 h-12 rounded-full bg-[#FFF4DE] flex items-center justify-center text-[#FFB300]">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="mt-stack-md flex items-center text-label-md text-[#FFB300] font-bold">
+<span class="material-symbols-outlined text-[16px] mr-1">history</span>
+                    Requires Review
+                </div>
+</div>
+<!-- Critical Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border-l-4 border-error shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Critical Alerts</p>
+<h2 class="text-display-lg font-display-lg text-error mt-base">3</h2>
+</div>
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error status-pulse">
+<span class="material-symbols-outlined">emergency_home</span>
+</div>
+</div>
+<div class="mt-stack-md flex items-center text-label-md text-error font-bold">
+<span class="material-symbols-outlined text-[16px] mr-1" style="font-variation-settings: 'FILL' 1;">campaign</span>
+                    Immediate Action
+                </div>
+</div>
+</section>
+<!-- Map Visualization Section -->
+<section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant relative">
+<div class="p-stack-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-title-lg font-title-lg text-on-surface">Spatial Network View</h3>
+<div class="flex gap-stack-sm">
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">add</span></button>
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+</div>
+</div>
+<div class="h-[300px] md:h-[450px] w-full relative bg-surface-dim">
+<img alt="Detailed satellite map of Mysuru city with infrastructure overlays" class="w-full h-full object-cover opacity-60" data-alt="A highly detailed light-mode city map of Mysuru in a minimalist silver and gray aesthetic. The map features a professional infrastructure layout with clean white roads and subtle green park areas. Floating over the map are several glowing circular UI markers in primary green, warning yellow, and critical red, representing sensor positions across the urban network. The overall mood is high-tech, authoritative, and clear." data-location="Mysuru" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXjpqQQgCfQovGmK03L0fSZ0VC7QCpkTf_vcLCDlpfyqeKtxx3Sl3wmubpWZw1cXgjuaD_DfSeYXGovWGpoOOz_e3hMjuD3prc2EpvSH4TLE9yQqTnvZbs0J9Jq9OFZW1w0xvnFfe_dRKEmW9xyDNbT_fh63q60e0HPzrPYpwe6CX5l1mOCtZasWRcLwxE_Io9F1FiOFrUp_yCttZlxwWv4d1mMZMprxIYSgVMPCcwKYfak7Yxm4iMMrLrXW56ObxhQVf1Ti6ZCWE">
+<!-- Map Markers (Simulated) -->
+<div class="absolute top-1/4 left-1/3 group cursor-pointer">
+<div class="w-6 h-6 bg-primary border-4 border-white rounded-full shadow-lg"></div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white px-2 py-1 rounded shadow-md text-label-md hidden group-hover:block whitespace-nowrap">MH-101 (Safe)</div>
+</div>
+<div class="absolute top-1/2 right-1/4 group cursor-pointer">
+<div class="w-6 h-6 bg-[#FFB300] border-4 border-white rounded-full shadow-lg"></div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white px-2 py-1 rounded shadow-md text-label-md hidden group-hover:block whitespace-nowrap">MH-204 (Warning)</div>
+</div>
+<div class="absolute bottom-1/3 left-1/2 group cursor-pointer">
+<div class="w-6 h-6 bg-error border-4 border-white rounded-full shadow-lg status-pulse"></div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white px-2 py-1 rounded shadow-md text-label-md hidden group-hover:block whitespace-nowrap font-bold text-error">MH-312 (Critical)</div>
+</div>
+</div>
+<!-- Map Legend -->
+<div class="absolute bottom-stack-lg left-stack-lg bg-surface/90 backdrop-blur-md p-stack-md rounded-lg shadow-lg border border-outline-variant hidden md:block">
+<p class="text-label-md font-bold mb-stack-sm">Legend</p>
+<div class="space-y-1">
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-primary rounded-full"></span> <span class="text-label-md">Optimal</span></div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-[#FFB300] rounded-full"></span> <span class="text-label-md">Review</span></div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-error rounded-full"></span> <span class="text-label-md">Urgent</span></div>
+</div>
+</div>
+</section>
+<!-- Filters & Active List -->
+<section class="space-y-gutter">
+<div class="flex items-center justify-between overflow-x-auto pb-2 scrollbar-hide">
+<div class="flex gap-stack-sm">
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-bold text-label-md transition-all">All</button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium text-label-md hover:bg-primary-fixed-dim transition-all">Safe</button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium text-label-md hover:bg-[#FFF4DE] transition-all">Warning</button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium text-label-md hover:bg-error-container transition-all">Critical</button>
+</div>
+<div class="hidden md:flex items-center gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+<span class="text-label-md">Last Updated</span>
+</div>
+</div>
+<div class="space-y-stack-md">
+<!-- Card 1: Safe -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant hover:border-primary/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-gutter" style="transform: scale(1);">
+<div class="flex items-center gap-stack-lg">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">settings_input_component</span>
+</div>
+<div>
+<div class="flex items-center gap-stack-sm mb-1">
+<span class="text-body-lg font-bold">MH-101</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase">Safe</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Mysuru Central Area</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:flex items-center gap-gutter">
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Oxygen</p>
+<p class="text-body-lg font-bold text-primary">20.8%</p>
+</div>
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Updated</p>
+<p class="text-body-lg font-medium">2 mins ago</p>
+</div>
+<div class="col-span-2 md:col-auto">
+<button class="w-full md:w-auto px-6 py-2.5 rounded-lg border border-primary text-primary font-bold text-label-md hover:bg-primary/5 active:scale-95 transition-all">View Details</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Warning -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant hover:border-[#FFB300]/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-gutter" style="transform: scale(1);">
+<div class="flex items-center gap-stack-lg">
+<div class="w-12 h-12 rounded-full bg-[#FFF4DE] flex items-center justify-center text-[#FFB300] shrink-0">
+<span class="material-symbols-outlined">air</span>
+</div>
+<div>
+<div class="flex items-center gap-stack-sm mb-1">
+<span class="text-body-lg font-bold">MH-204</span>
+<span class="px-2 py-0.5 rounded bg-[#FFF4DE] text-[#805B00] text-[10px] font-bold uppercase">Warning</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Industrial Zone</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:flex items-center gap-gutter">
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Methane</p>
+<p class="text-body-lg font-bold text-[#FFB300]">42 ppm</p>
+</div>
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Updated</p>
+<p class="text-body-lg font-medium">1 min ago</p>
+</div>
+<div class="col-span-2 md:col-auto">
+<button class="w-full md:w-auto px-6 py-2.5 rounded-lg border border-[#FFB300] text-[#805B00] font-bold text-label-md hover:bg-[#FFB300]/5 active:scale-95 transition-all">Assign Worker</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Critical -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border-l-4 border-error border-y border-r border-outline-variant hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-gutter" style="transform: scale(1);">
+<div class="flex items-center gap-stack-lg">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error status-pulse shrink-0">
+<span class="material-symbols-outlined">skull</span>
+</div>
+<div>
+<div class="flex items-center gap-stack-sm mb-1">
+<span class="text-body-lg font-bold text-error">MH-312</span>
+<span class="px-2 py-0.5 rounded bg-error text-on-error text-[10px] font-bold uppercase">Critical</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Market Road</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:flex items-center gap-gutter">
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">H₂S Level</p>
+<p class="text-body-lg font-bold text-error">High</p>
+</div>
+<div class="md:text-center px-4 md:border-r border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Updated</p>
+<p class="text-body-lg font-medium text-error">Just now</p>
+</div>
+<div class="col-span-2 md:col-auto">
+<button class="w-full md:w-auto px-6 py-2.5 rounded-lg bg-error text-on-error font-bold text-label-md shadow-lg shadow-error/20 active:scale-95 transition-all">Generate Alert</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-2 pb-4 pt-2 md:px-container-padding-desktop">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-6 py-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="text-label-md font-bold">Monitoring</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="text-label-md font-label-md">Alerts</span>
+</a>
+<a class="hidden md:flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</nav>
+<!-- FAB for Quick Actions (Mobile Only) -->
+<button class="fixed bottom-24 right-container-padding-mobile md:hidden w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<script>
+        // Simple ripple effect for cards
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('mousedown', function(e) {
+                this.style.transition = 'all 0.1s';
+                this.style.transform = 'scale(0.99)';
+            });
+            card.addEventListener('mouseup', function(e) {
+                this.style.transform = 'scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function(e) {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

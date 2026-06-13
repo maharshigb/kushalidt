@@ -1,0 +1,342 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+    /* SafeHole Theme Light */
+    --primary: #2E7D32;
+    --primary-hover: #1B5E20;
+    --secondary: #4CAF50;
+    --accent: #A5D6A7;
+    --bg-app: #F8FAF8;
+    --bg-card: #FFFFFF;
+    --text-main: #263238;
+    --text-muted: #546E7A;
+    --warning: #FFB300;
+    --danger: #E53935;
+    --border: #E0E0E0;
+    
+    /* Interface wrapper colors */
+    --bg-wrapper: #ECEFF1;
+    --bg-sidebar: #FFFFFF;
+    --sidebar-border: #CFD8DC;
+}
+
+.dark-theme {
+    /* SafeHole Theme Dark */
+    --primary: #81C784;
+    --primary-hover: #66BB6A;
+    --secondary: #4CAF50;
+    --accent: #2E7D32;
+    --bg-app: #121212;
+    --bg-card: #1E1E1E;
+    --text-main: #ECEFF1;
+    --text-muted: #90A4AE;
+    --warning: #FFCA28;
+    --danger: #EF5350;
+    --border: #2C2C2C;
+    
+    /* Interface wrapper colors */
+    --bg-wrapper: #0A0F0D;
+    --bg-sidebar: #151A18;
+    --sidebar-border: #2E3330;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-wrapper);
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #CFD8DC;
+    border-radius: 8px;
+}
+.dark-theme ::-webkit-scrollbar-thumb {
+    background: #37474F;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #90A4AE;
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark-theme .glass {
+    background: rgba(21, 26, 24, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Standalone App Layout Container */
+#app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-wrapper);
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Mobile-First Responsive Card App Shell */
+.phone-mockup {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-app);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Desktop Centering Emulator */
+@media (min-width: 640px) {
+    .phone-mockup {
+        width: 100%;
+        max-width: 450px;
+        height: 92vh;
+        border-radius: 24px;
+        box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.12),
+                    0px 5px 15px rgba(0, 0, 0, 0.08);
+        border: 1px solid var(--border);
+    }
+}
+
+/* Screen Viewport Container */
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+    border-radius: inherit;
+}
+
+/* Active Screen viewport */
+.screen-viewport {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 76px; /* Space for bottom nav */
+    height: 100%;
+}
+
+/* Hide navigation bar on splash and onboarding and login */
+.no-nav .screen-viewport {
+    padding-bottom: 0px;
+}
+
+/* Custom UI Components inside Phone */
+.custom-header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.custom-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+/* Bottom Nav bar inside phone */
+.custom-bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 30;
+    padding-bottom: 8px;
+}
+
+.nav-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    transition: color 0.2s;
+    width: 20%;
+}
+.nav-tab.active {
+    color: var(--primary);
+}
+.nav-tab .tab-icon {
+    font-size: 22px;
+    margin-bottom: 2px;
+    padding: 4px 16px;
+    border-radius: 16px;
+    transition: all 0.2s;
+}
+.nav-tab.active .tab-icon {
+    background-color: rgba(76, 175, 80, 0.15);
+}
+
+/* Leaflet Map Styling */
+.map-placeholder {
+    height: 220px;
+    background-color: #E8F5E9;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Live console logger */
+#console-logs {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: #0A0F0D;
+    color: #81C784;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #1E2E21;
+}
+
+.log-entry {
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(129, 199, 132, 0.05);
+    padding-bottom: 4px;
+}
+.log-info { color: #81C784; }
+.log-warning { color: #FFB300; }
+.log-alarm { color: #EF5350; animation: blink 1s infinite alternate; }
+
+@keyframes blink {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* Pulsing markers on the map */
+.pulsing-marker {
+    position: relative;
+}
+.marker-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+.marker-dot.safe { background-color: #2E7D32; }
+.marker-dot.warning { background-color: #FFB300; }
+.marker-dot.critical { background-color: #E53935; }
+
+.marker-pulse {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: marker-glow 1.5s infinite ease-out;
+    pointer-events: none;
+}
+.marker-pulse.safe { border: 2px solid rgba(46, 125, 50, 0.5); }
+.marker-pulse.warning { border: 2px solid rgba(255, 179, 0, 0.5); }
+.marker-pulse.critical { border: 2px solid rgba(229, 57, 53, 0.5); }
+
+@keyframes marker-glow {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Detail gauge meters */
+.gauge-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+/* Micro-animations */
+.hover-scale {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-scale:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+.hover-scale:active {
+    transform: translateY(0px) scale(0.98);
+}
+
+.pulse-anim {
+    animation: pulse-red 2s infinite ease-in-out;
+}
+
+/* Push notification banner inside simulator */
+.push-notification {
+    position: absolute;
+    top: 54px;
+    left: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 5px solid var(--danger);
+    padding: 12px;
+    border-radius: 14px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    z-index: 99;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transform: translateY(-150%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+.dark-theme .push-notification {
+    background: rgba(30, 30, 30, 0.95);
+}
+.push-notification.show {
+    transform: translateY(0);
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Manhole Details - MH-104 | SafeHole AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#c8ffbf",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#88d982",
+                    "inverse-on-surface": "#edf2ea",
+                    "on-tertiary-fixed": "#002203",
+                    "surface-dim": "#d6dcd3",
+                    "on-tertiary-fixed-variant": "#0c5216",
+                    "surface": "#f5fbf2",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#171d18",
+                    "surface-bright": "#f5fbf2",
+                    "on-secondary-fixed": "#002204",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#171d18",
+                    "tertiary-fixed-dim": "#91d78a",
+                    "primary-fixed": "#a3f69c",
+                    "primary-container": "#2e7d32",
+                    "secondary-container": "#91f78e",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f0f5ed",
+                    "on-secondary-container": "#00731e",
+                    "tertiary-fixed": "#acf4a4",
+                    "surface-container-highest": "#dee4dc",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#1f6223",
+                    "secondary": "#006e1c",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#dee4dc",
+                    "outline-variant": "#bfcaba",
+                    "on-primary-container": "#cbffc2",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#1b6d24",
+                    "surface-container-high": "#e4eae1",
+                    "primary-fixed-dim": "#88d982",
+                    "tertiary-container": "#3a7b39",
+                    "on-surface-variant": "#40493d",
+                    "background": "#f5fbf2",
+                    "on-primary-fixed": "#002204",
+                    "on-primary-fixed-variant": "#005312",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary": "#0d631b",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#94f990",
+                    "outline": "#707a6c",
+                    "surface-container": "#eaf0e7",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "container-padding-mobile": "16px",
+                    "stack-md": "12px",
+                    "container-padding-desktop": "24px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "title-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(13, 99, 27, 0.1) 0%, rgba(13, 99, 27, 0) 100%);
+        }
+        .emergency-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(186, 26, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #bfcaba; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top Navigation Header -->
+<header class="bg-surface shadow-sm docked full-width top-0 flex justify-between items-center w-full px-container-padding-mobile h-16 z-50 sticky transition-all duration-200">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="text-title-lg font-title-lg font-bold text-primary">MH-104</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Industrial Sector A, Hub 4</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">history</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+</div>
+</header>
+<main class="px-container-padding-mobile pt-6 max-w-4xl mx-auto space-y-6 overflow-y-auto h-full">
+<!-- Live Status Badge -->
+<div class="flex items-center justify-between bg-surface-container-low p-4 rounded-xl border border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<div class="absolute inset-0 w-3 h-3 bg-primary rounded-full animate-ping opacity-75"></div>
+</div>
+<span class="text-body-md font-medium text-on-surface">Live Sensor Uplink Active</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">Updated 2s ago</span>
+</div>
+<!-- Live Sensor Grid (Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Methane Card -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Methane (CH4)</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">gas_meter</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">0.02</span>
+<span class="text-label-md font-label-md text-on-surface-variant">% LEL</span>
+</div>
+</div>
+<!-- Oxygen Card -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Oxygen (O2)</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">air</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">20.9</span>
+<span class="text-label-md font-label-md text-on-surface-variant">% Vol</span>
+</div>
+</div>
+<!-- CO Card -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Carbon Monoxide</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">co2</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">4</span>
+<span class="text-label-md font-label-md text-on-surface-variant">PPM</span>
+</div>
+</div>
+<!-- H2S Card (Warning Style) -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-error flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">H2S</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">1.2</span>
+<span class="text-label-md font-label-md text-on-surface-variant">PPM</span>
+</div>
+</div>
+<!-- Temperature Card -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Temperature</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">thermostat</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">24</span>
+<span class="text-label-md font-label-md text-on-surface-variant">°C</span>
+</div>
+</div>
+<!-- Water Level Card -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between h-32 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Water Level</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<span class="text-headline-lg font-headline-lg text-on-surface">15</span>
+<span class="text-label-md font-label-md text-on-surface-variant">CM</span>
+</div>
+</div>
+</div>
+<!-- Trend Chart Section -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-title-lg font-title-lg text-on-surface">Gas Concentration Trend</h3>
+<select class="bg-surface-container border-none rounded-lg text-label-md font-label-md py-1 pr-8 focus:ring-primary">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+</select>
+</div>
+<div class="relative h-48 w-full chart-gradient border-b border-l border-outline-variant/30 flex items-end">
+<!-- Simple SVG Mock for Trend Line -->
+<svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="var(--tw-colors-primary)" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="var(--tw-colors-primary)" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0,80 Q10,75 20,85 T40,60 T60,70 T80,40 T100,50" fill="none" stroke="#0d631b" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,80 Q10,75 20,85 T40,60 T60,70 T80,40 T100,50 L100,100 L0,100 Z" fill="url(#lineGrad)" vector-effect="non-scaling-stroke"></path>
+<!-- Threshold Line -->
+<line stroke="#ba1a1a" stroke-dasharray="4" stroke-width="1" vector-effect="non-scaling-stroke" x1="0" x2="100" y1="30" y2="30"></line>
+</svg>
+<div class="absolute top-2 right-0 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-[10px] font-bold text-error uppercase">Danger Threshold</span>
+</div>
+<!-- X-Axis Labels -->
+<div class="absolute -bottom-6 w-full flex justify-between text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">
+<span class="">08:00</span>
+<span class="">12:00</span>
+<span class="">16:00</span>
+<span class="">20:00</span>
+<span class="">00:00</span>
+</div>
+</div>
+</div>
+<!-- Infrastructure Image Card -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm aspect-video relative group">
+<img alt="Manhole Internal View" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A professional, high-definition close-up photograph of a heavy-duty industrial manhole interior with modern sensor hardware installed on the side walls. The lighting is focused and cinematic, using cool blue and technical white tones to highlight the metallic textures and damp concrete. The overall aesthetic is industrial, clean, and technologically advanced, suggesting a high-stakes safety monitoring environment in a modern city infrastructure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_854GdzD2guwVVWI5c8o-a--aM0r6ONnmkhDa16_TYHR8V0Zs7yv5icSpgE16W_xEjzrGOdret_kgzMGiCfD6zxGOEwdVHnxNsGzC718bz_FmbPcvVvjHG6Uu0Oho87iyOcJ0kqjfxf74Iu5fnVHsSeiBR-KtIQp-w6W4rTnWSbh53o0gAA0MeKQGbCnBMd5Ci-MH9TSzojD1FM0qF3BCwPeXOqK_SA-kUGtr8Xzg5Qjb-d7Hs5yqAoqo8ALoHPm8ECtkAhwea2A">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<div class="text-white">
+<p class="text-label-md font-bold uppercase tracking-widest opacity-80">Location Reference</p>
+<p class="text-title-lg font-bold">Internal Chamber V-104</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Emergency Action Sticky Footer -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-surface/80 backdrop-blur-md z-50 flex flex-col gap-3">
+<button class="emergency-pulse w-full bg-error text-on-error h-16 rounded-2xl flex items-center justify-center gap-3 active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+<span class="text-title-lg font-bold uppercase tracking-tight">Emergency Action</span>
+</button>
+<!-- Bottom Nav Bar Simulation -->
+<nav class="flex justify-around items-center pt-2">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="text-label-md">Monitoring</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-label-md">Alerts</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-md">Profile</span>
+</div>
+</nav>
+</div>
+<script>
+        // Micro-interactions for sensor cards
+        document.querySelectorAll('.grid > div').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.02]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.02]');
+            });
+        });
+
+        // Emergency button long-press simulation logic
+        let pressTimer;
+        const emergencyBtn = document.querySelector('.emergency-pulse');
+        
+        emergencyBtn.addEventListener('mousedown', () => {
+            pressTimer = setTimeout(() => {
+                emergencyBtn.classList.remove('bg-error');
+                emergencyBtn.classList.add('bg-black');
+                emergencyBtn.innerText = "SOS SIGNAL SENT";
+            }, 1000);
+        });
+
+        emergencyBtn.addEventListener('mouseup', () => {
+            clearTimeout(pressTimer);
+        });
+    </script>
+
+
+</body></html>

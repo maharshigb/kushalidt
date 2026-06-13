@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeHole AI - Secure Login</title>
+<!-- Google Fonts: Manrope for high-end UI -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#c8ffbf",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#88d982",
+                        "inverse-on-surface": "#edf2ea",
+                        "on-tertiary-fixed": "#002203",
+                        "surface-dim": "#d6dcd3",
+                        "on-tertiary-fixed-variant": "#0c5216",
+                        "surface": "#f5fbf2",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#171d18",
+                        "surface-bright": "#f5fbf2",
+                        "on-secondary-fixed": "#002204",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#171d18",
+                        "tertiary-fixed-dim": "#91d78a",
+                        "primary-fixed": "#a3f69c",
+                        "primary-container": "#2e7d32",
+                        "secondary-container": "#91f78e",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f0f5ed",
+                        "on-secondary-container": "#00731e",
+                        "tertiary-fixed": "#acf4a4",
+                        "surface-container-highest": "#dee4dc",
+                        "inverse-surface": "#2c322c",
+                        "tertiary": "#1f6223",
+                        "secondary": "#006e1c",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#dee4dc",
+                        "outline-variant": "#bfcaba",
+                        "on-primary-container": "#cbffc2",
+                        "on-secondary-fixed-variant": "#005313",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#1b6d24",
+                        "surface-container-high": "#e4eae1",
+                        "primary-fixed-dim": "#88d982",
+                        "tertiary-container": "#3a7b39",
+                        "on-surface-variant": "#40493d",
+                        "background": "#f5fbf2",
+                        "on-primary-fixed": "#002204",
+                        "on-primary-fixed-variant": "#005312",
+                        "secondary-fixed-dim": "#78dc77",
+                        "primary": "#0d631b",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#94f990",
+                        "outline": "#707a6c",
+                        "surface-container": "#eaf0e7",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "base": "8px",
+                        "container-padding-mobile": "16px",
+                        "stack-md": "12px",
+                        "container-padding-desktop": "24px",
+                        "stack-sm": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "title-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f5fbf2;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .input-focus-ring:focus {
+            ring: 2px;
+            ring-offset: 2px;
+            ring-color: #0d631b;
+        }
+        /* Custom patterns for background depth */
+        .bg-pattern {
+            background-image: radial-gradient(#0d631b11 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex p-container-padding-mobile md:p-container-padding-desktop bg-surface relative">
+<!-- Background Accents -->
+<div class="absolute inset-0 bg-pattern -z-10 opacity-50"></div>
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-fixed/20 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary-container/20 rounded-full blur-[120px]"></div>
+<!-- Auth Container -->
+<main class="w-full max-w-[440px] z-10 mx-4 py-8">
+<div class="login-glass shadow-lg rounded-xl p-8 flex flex-col items-center">
+<!-- Logo Section -->
+<div class="mb-stack-lg">
+<img alt="SafeHole AI Logo" class="w-16 h-16 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsuOtLYHkcNjMJPuadiUOhT-sQ6e01WZLWHSdPot6jeyGswDvuK2cNScIIAAYNiZm6jjqjLD84SKGx88JZ_cMdKaIZTNkkXGNUoQ4CtWryTo-ip4DKvtaOszJenfOpR4m7PHdP97_awoFtk1Kjppaxzkk9VPAjLDu5sGmLR8VVpcAx6WWBWEzQcWsfK_kcWNqsHuGlSdgdJ1R3pAsYSqxci-VP1y05ANQwpJKvLdJBhq_x4EpIWXzNUeaSqIQUdrnrjVCQwuWpN_4">
+</div>
+<!-- Header Text -->
+<div class="text-center mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Welcome Back</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Access the safe infrastructure monitoring portal.</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="w-full space-y-5" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="email" name="email" placeholder="name@company.com" required="" type="email">
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center ml-1">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full pl-12 pr-12 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="pw-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-2 space-y-4">
+<button class="w-full bg-primary text-on-primary font-title-lg text-body-lg py-3.5 rounded-lg shadow-sm hover:bg-primary-container hover:shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span class="">Login</span>
+<span class="material-symbols-outlined text-sm">login</span>
+</button>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-4 text-outline font-label-md text-label-md">OR</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<button class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-title-lg text-body-lg py-3.5 rounded-lg shadow-sm hover:bg-surface-container-low active:scale-[0.98] transition-all flex items-center justify-center gap-3" type="button">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiKG-UHNOMYCqa03rurNqPRDWhe1uqDN_QMHXwtS16IO1syJiCdNSda8F6FN6EI_sEYkIzQY6ELceOjdvq6Pq6xHiODDvynfUqdXOcYF05vRHzEaQH7CR38ywWgHokmwLwSPF1ocleXKcRR-SE3xB7XVoOgi2PZ-ao9k38m7tgyVIfRTxLMMGVo10HASIaJHhqoaQWpyo3s_AHCr3EU8sfFEP9Snssi1uapB9tROM6V6KkR1T_wikiV1fpnf6cyP6-9bonqqimRww">
+<span class="">Continue with Google</span>
+</button>
+</div>
+</form>
+<!-- Sign Up Prompt -->
+<div class="mt-10 pt-6 border-t border-outline-variant w-full text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="text-primary font-bold hover:underline transition-all ml-1" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+<!-- Footer / Identity -->
+<footer class="mt-8 text-center space-y-2">
+<div class="flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Enterprise Grade Security</span>
+</div>
+<p class="text-[10px] text-outline font-label-md opacity-70">
+                © 2024 SafeHole AI Monitoring Systems. All rights reserved.
+            </p>
+</footer>
+</main>
+<script>
+        function togglePassword() {
+            const pwInput = document.getElementById('password');
+            const pwIcon = document.getElementById('pw-icon');
+            if (pwInput.type === 'password') {
+                pwInput.type = 'text';
+                pwIcon.innerText = 'visibility_off';
+            } else {
+                pwInput.type = 'password';
+                pwIcon.innerText = 'visibility';
+            }
+        }
+
+        // Add subtle parallax to background blobs
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const blobs = document.querySelectorAll('.blur-[120px]');
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 20;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                blob.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeHole AI - Alerts &amp; Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#c8ffbf",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#88d982",
+                    "inverse-on-surface": "#edf2ea",
+                    "on-tertiary-fixed": "#002203",
+                    "surface-dim": "#d6dcd3",
+                    "on-tertiary-fixed-variant": "#0c5216",
+                    "surface": "#f5fbf2",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#171d18",
+                    "surface-bright": "#f5fbf2",
+                    "on-secondary-fixed": "#002204",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#171d18",
+                    "tertiary-fixed-dim": "#91d78a",
+                    "primary-fixed": "#a3f69c",
+                    "primary-container": "#2e7d32",
+                    "secondary-container": "#91f78e",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f0f5ed",
+                    "on-secondary-container": "#00731e",
+                    "tertiary-fixed": "#acf4a4",
+                    "surface-container-highest": "#dee4dc",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#1f6223",
+                    "secondary": "#006e1c",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#dee4dc",
+                    "outline-variant": "#bfcaba",
+                    "on-primary-container": "#cbffc2",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#1b6d24",
+                    "surface-container-high": "#e4eae1",
+                    "primary-fixed-dim": "#88d982",
+                    "tertiary-container": "#3a7b39",
+                    "on-surface-variant": "#40493d",
+                    "background": "#f5fbf2",
+                    "on-primary-fixed": "#002204",
+                    "on-primary-fixed-variant": "#005312",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary": "#0d631b",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#94f990",
+                    "outline": "#707a6c",
+                    "surface-container": "#eaf0e7",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "container-padding-mobile": "16px",
+                    "stack-md": "12px",
+                    "container-padding-desktop": "24px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "title-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(186, 26, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32 overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-50 flex justify-between items-center w-full px-container-padding-mobile h-16 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">SafeHole AI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="tune">tune</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-container-padding-mobile max-w-2xl mx-auto overflow-hidden" style="height: 100vh; overflow-y: auto;">
+<!-- Header Section -->
+<section class="mb-8">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile mb-2">Alert Center</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Real-time infrastructure safety monitoring.</p>
+</section>
+<!-- Alert Categories (Bento-lite) -->
+<div class="grid grid-cols-3 gap-3 mb-8">
+<div class="bg-error-container p-4 rounded-xl flex flex-col items-center justify-center text-on-error-container">
+<span class="text-title-lg font-bold">03</span>
+<span class="text-label-md font-label-md">Critical</span>
+</div>
+<div class="bg-secondary-container p-4 rounded-xl flex flex-col items-center justify-center text-on-secondary-container">
+<span class="text-title-lg font-bold">08</span>
+<span class="text-label-md font-label-md">Warning</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl flex flex-col items-center justify-center text-on-surface-variant">
+<span class="text-title-lg font-bold">12</span>
+<span class="text-label-md font-label-md">Info</span>
+</div>
+</div>
+<!-- Alerts List -->
+<div class="space-y-4">
+<!-- Critical Alert -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border-l-4 border-error hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error pulse-red" data-icon="dangerous" style="font-variation-settings: 'FILL' 1;">dangerous</span>
+<span class="text-label-md font-bold text-error uppercase tracking-wider">Critical</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">2 mins ago</span>
+</div>
+<h3 class="text-body-lg font-bold mb-1">Methane Level Critical</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3">Manhole #882 (Market St.) reports CH4 concentration at 4.2% LEL. Immediate evacuation recommended.</p>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        Sector 4, Zone B - Downtown
+                    </div>
+<!-- Actions -->
+<div class="flex gap-2 border-t border-outline-variant pt-4">
+<button class="flex-1 py-2 rounded-lg bg-error text-on-error text-label-md font-bold hover:opacity-90 active:scale-95 transition-all">Acknowledge</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface text-label-md font-bold hover:bg-surface-container-highest active:scale-95 transition-all">Assign</button>
+</div>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border-l-4 border-secondary transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-label-md font-bold text-secondary uppercase tracking-wider">Warning</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">14 mins ago</span>
+</div>
+<h3 class="text-body-lg font-bold mb-1">Water Level Rising</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3">Manhole #104 (Riverside) water level exceeds 75% capacity. Overflow expected in 2 hours.</p>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        East Waterfront District
+                    </div>
+<!-- Actions -->
+<div class="flex gap-2 border-t border-outline-variant pt-4">
+<button class="flex-1 py-2 rounded-lg bg-secondary text-on-secondary text-label-md font-bold hover:opacity-90 active:scale-95 transition-all">Acknowledge</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface text-label-md font-bold hover:bg-surface-container-highest active:scale-95 transition-all">Assign</button>
+</div>
+</div>
+</div>
+<!-- Info Alert -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border-l-4 border-primary transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="text-label-md font-bold text-primary uppercase tracking-wider">Info</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">1 hour ago</span>
+</div>
+<h3 class="text-body-lg font-bold mb-1">Routine Inspection Due</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3">Bi-weekly hardware status check for Central Hub sensors. All systems currently nominal.</p>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        Global Sensor Network
+                    </div>
+<!-- Actions -->
+<div class="flex gap-2 border-t border-outline-variant pt-4">
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary text-label-md font-bold hover:opacity-90 active:scale-95 transition-all">Resolve</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface text-label-md font-bold hover:bg-surface-container-highest active:scale-95 transition-all">Assign</button>
+</div>
+</div>
+</div>
+<!-- Critical Alert 2 -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm border-l-4 border-error hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="lock_open" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+<span class="text-label-md font-bold text-error uppercase tracking-wider">Critical</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">2 hours ago</span>
+</div>
+<h3 class="text-body-lg font-bold mb-1">Unauthorized Access</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3">Cover sensor triggered on Secure Vault #09. Visual confirmation unavailable.</p>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        Financial District
+                    </div>
+<!-- Actions -->
+<div class="flex gap-2 border-t border-outline-variant pt-4">
+<button class="flex-1 py-2 rounded-lg bg-error text-on-error text-label-md font-bold hover:opacity-90 active:scale-95 transition-all">Acknowledge</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface text-label-md font-bold hover:bg-surface-container-highest active:scale-95 transition-all">Assign</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-label-md font-label-md">Monitoring</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="text-label-md font-label-md font-bold">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for alert cards
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.className = 'absolute bg-white/30 rounded-full w-2 h-2 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 animate-ping';
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                ripple.style.left = e.clientX - this.getBoundingClientRect().left + 'px';
+                ripple.style.top = e.clientY - this.getBoundingClientRect().top + 'px';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+
+
+</body></html>
